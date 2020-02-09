@@ -12,11 +12,11 @@ What Is It?
 -----------
 OpenDeliveryFormat, ODF for short, is both an interchange protocol and packaging system for the VFX and Animation industries. ODF is built with the sole purpose of making it easier to work together. This includes across facilities, tracking software, nomenclature, and more.
 
-To put it into context, if `USD <https://graphics.pixar.com/usd/docs/Introduction-to-USD.html>`_ is the definition of any scene, ODF is the definition of any package, containing work or deliverables for an external party or within two different systems of a pipeline.
+To put it into context, if `USD <https://graphics.pixar.com/usd/docs/Introduction-to-USD.html>`_ is the definition of any scene, ODF is the definition of any package containing work, deliverables, or information for an external party or even within two different systems of a pipeline.
 
 Some basic examples might be:
 
-* You need to present a set of images sequences and elements for another firm to comp a shot
+* You need to present a set of image sequences and elements for another firm to comp a shot
 * Outsource plates for roto with an annotation and notes
 * Pass a model to a third party rigging client
 * Passing back and forth caches, USDs, or other forms of scene description 

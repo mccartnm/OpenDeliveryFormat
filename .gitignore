@@ -1,1 +1,3 @@
 docs/build/*
+*.pyc
+debug.log
