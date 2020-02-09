@@ -1,0 +1,64 @@
+name: basic-vfx-paint
+
+#
+# Simple means of overloading the default component types
+#
+# In this case, we are changing the default regex for a plate
+#
+overrides:
+  plate:
+    regex: '.*_v(?P<version>[0-9]+)\.(?P<padding>[0-9]+)\.(?P<extension>[a-zA-Z0-9]{3,4})$'
+
+
+#
+# Work is how we define the data from client -> firm.
+#
+# We define the container type and the required/optional components.
+# By default, this uses ODF-primitive components :D
+#
+work:
+  container: shot
+  required_components:
+    - plate
+    - note
+  optional_components:
+    - annotation
+    - frame_range
+
+
+#
+#
+# Delivery is how we ship content back and ON SPEC. We define as simple
+# language for what our output should look like. This makes it extremely
+# simple to validate that all items are present, that they match the
+# spec, and to generate their resulting delivery paths
+#
+#
+# When we go to build our delivery bundle, we match each container with it's
+# respective component. We use a simple python str.format for the spec.
+#
+# We get a context for building the paths like so:
+#
+# {
+#    'work': {
+#         'plate' : {
+#             'version' : int,
+#             'padding' : 8
+#         }
+#     },
+#     'container': {
+#         'name': <container_name>,
+#         'version': <delivery_version>
+#     }
+# }
+#
+#
+delivery:
+  container: shot
+  required_components:
+    plate:
+      paint/output/{container.name}/plate/{container.name}_src{work.plate.version}_v{container.version:03}.%0{work.plate.padding}d.{work.plate.extension}
+    quicktime:
+      paint/output/{container.name}/qt/{container.name}_src{work.plate.version}_v{container.version:03}.mp4
+    nuke_script:
+      paint/output/{container.name}/script/{container.name}_src{work.plate.version}_v{container.version:03}.nk

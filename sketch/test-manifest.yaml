@@ -1,0 +1,76 @@
+######################
+# OpenDeliveryFormat #
+######################
+
+meta:
+  odf_version: "1.0.0"
+  vendor_id: my_studio
+  vendor_to: foobar-vfx
+
+
+items:
+
+  # A simple bit of roto work
+  - name: aaa100_mpv01
+    group: aaa100
+    type: basic-vfx-paint
+    components:
+      plate:
+        - plates/aaa100_mpv01/aaa100_mpv01_BG_v001.%04d.exr
+      note:
+        - All weapons on individual shapes. Castle ramparts should
+          be included
+      annotation:
+        - plates/aaa100_mpv01/_annotations/aaa100_mpv01.1045.exr
+      frame_range:
+        - "104252-104299:handles=4,104355-104391:handles=4"
+    meta:
+      vendor_id: my_studio
+      customer_id: foobar-vfx
+      db_store_id: 774325
+
+
+  # A more complex rig cycle
+  - name: character_greg
+    group: characters
+    type: ss-maya-rig-build
+    delivery: ss-maya-rig-delivery
+    components:
+      model:
+        - models/character_greg/model.ma
+      note:
+        - Stretch rig required with provided template. Exagerate facial
+          features - needs to feel like jelly.
+    meta:
+      vendor_id: ...
+
+
+  # Simple Stereo Shot
+  - name: foo_123_4123
+    group: foo
+    type: stereo-convert
+    components:
+      plate:
+        - plates/foo_123_4123/foo_123_4123.%08d.exr
+      frame_range:
+        - 1008-1203
+    meta:
+      some_data: ...
+
+
+  # Stereo w/ elements
+  - name: foo_123_4444
+    group: foo
+    type: stereo-convert-elements
+    components:
+      plate:
+        - plates/foo_123_4444/plates/foo_123_4444.%08d.exr
+      nuke_script:
+        - projects/foo_123_4444/script/foo_123_4444_v024.nk
+      element:
+        - elements/global/warpper/wrapper.%04d.tif
+        - elements/global/colorcubes/cc_023.cc
+        - elements/foo_123_4123/mattes/fg_char_matte.%04d.tif
+        - ...
+    meta:
+      some_data: ...
