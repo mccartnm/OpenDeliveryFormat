@@ -3,45 +3,56 @@
 ######################
 
 meta:
-  odf_version: "1.0.0"
-  vendor_id: my_studio
-  vendor_to: foobar-vfx
+  odf-version: "1.0.1"
+  odf-vendor-id: my_studio
+  vendor-to: foobar-vfx
 
 
-items:
+containers:
 
   # A simple bit of roto work
-  - name: aaa100_mpv01
-    group: aaa100
+  - name: a100_mpv01
+    group: a100
     type: basic-vfx-paint
     components:
-      plate:
-        - plates/aaa100_mpv01/aaa100_mpv01_BG_v001.%04d.exr
-      note:
-        - All weapons on individual shapes. Castle ramparts should
-          be included
-      annotation:
-        - plates/aaa100_mpv01/_annotations/aaa100_mpv01.1045.exr
-      frame_range:
-        - "104252-104299:handles=4,104355-104391:handles=4"
+      - name: oneg
+        type: plate
+        sub_components:
+          - note: |
+              All weapons on individual shapes. Castle ramparts should
+              be included
+          - annotation: plates/aaa100_mpv01/_annotations/aaa100_mpv01.1045.jpg
+          - frame_range: "104252-104299:handles=4,104355-104391:handles=4"
     meta:
-      vendor_id: my_studio
-      customer_id: foobar-vfx
-      db_store_id: 774325
+      odf-vendor-id: my_studio
+      customer-id: foobar-vfx
+      db-store-id: 774325
 
 
   # A more complex rig cycle
   - name: character_greg
     group: characters
     type: ss-maya-rig-build
-    delivery: ss-maya-rig-delivery
     components:
-      model:
-        - models/character_greg/model.ma
-      note:
-        - Stretch rig required with provided template. Exagerate facial
-          features - needs to feel like jelly.
+      - type: model
+        name: mdl
+        sub_components:
+          - note: |
+              Stretch rig required with provided template. Exagerate facial
+              features - needs to feel like jelly.
     meta:
-      vendor_id: my_studio
-      customer_id: foobar-vfx
-      db_store_id: 774325
+      odf-vendor-id: my_studio
+      customer-id: foobar-vfx
+      db-store-id: 774325
+
+  # A simple stereo delivery
+  - name: aa_0330
+    group: aa
+    type: stereo-conversion
+    components:
+      - name: plates_original
+        type: plate
+        sub_components:
+          - frame_range: "1024-1153"
+    meta:
+      odf-vendor-id: my_studio

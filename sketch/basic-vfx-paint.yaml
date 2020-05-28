@@ -18,12 +18,13 @@ overrides:
 #
 work:
   container: shot
-  required_components:
-    - plate
-    - note
-  optional_components:
-    - annotation
-    - frame_range
+  components:
+    - type: plate
+      name: main-plates
+      sub_components:
+        - note
+        - +annotation
+        - +frame_range
 
 
 #
@@ -57,8 +58,21 @@ delivery:
   container: shot
   required_components:
     plate:
-      paint/output/{container.name}/plate/{container.name}_src{work.plate.version}_v{container.version:03}.%0{work.plate.padding}d.{work.plate.extension}
+      path: paint/output/{container.name}/plate/{container.name}_src{work.plate.version}_v{container.version:03}.%0{work.plate.padding}d.{work.plate.extension}
     quicktime:
-      paint/output/{container.name}/qt/{container.name}_src{work.plate.version}_v{container.version:03}.mp4
+      path: paint/output/{container.name}/qt/{container.name}_src{work.plate.version}_v{container.version:03}.mp4
     nuke_script:
-      paint/output/{container.name}/script/{container.name}_src{work.plate.version}_v{container.version:03}.nk
+      path: paint/output/{container.name}/script/{container.name}_src{work.plate.version}_v{container.version:03}.nk
+    csv:
+      append: true
+      path: paint/output/csv/v{delivery_version}.csv
+      columns:
+        - ["Name", "{container.name}"]
+        - ["Plate Version", "{work.plate.version}"]
+        - ["Plate Filename", "{work.plate.version.filename}"]
+        - ["Vendor Note", "{container.notes.latest_modified}" # Ponder this]
+        - ["Vendor ID", "{company.id}"]
+        - ["Submission", "{???}"]
+        - ["FrameCount", "{len(work.plate.frame_range)}"]
+        - ["FirstFrame", "{work.plate.frame_range.first}"]
+        - ["LastFrame", "{work.plate.frame_range.last}"]

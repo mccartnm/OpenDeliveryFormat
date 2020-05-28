@@ -8,6 +8,8 @@ import six
 import yaml
 import json
 
+import jsonschema
+
 from .exceptions import ODFFileError, ODFValidationError
 
 
@@ -117,6 +119,26 @@ class _DataContainer(object):
         :return: None
         """
         pass
+
+
+    @classmethod
+    def get_schema(cls, name):
+        """
+        :return: ``jsonschema.Draft7Validator`` to execute validation with
+        """
+        fpath = os.path.join(
+            os.path.dirname(__file__), 'schemas', name + '.schema'
+        ).replace('\\', '/')
+        with open(fpath, 'r') as f:
+            loaded_schema = json.load(f)
+
+        resolver = jsonschema.RefResolver(
+            'file:///' + os.path.dirname(fpath) + '/', loaded_schema
+        )
+        return jsonschema.Draft7Validator(
+            loaded_schema, resolver=resolver
+        )
+
 
 
     @classmethod

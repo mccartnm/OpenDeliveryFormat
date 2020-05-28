@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ODF_Manifest_Containers",
+    "description": "A Container listing in an ODF Manifest for the OpenDeliveryFormat system",
+    "type" : "object",
+
+    "properties": {
+
+        "name" : {
+            "description": "The name of the container",
+            "type": "string"
+        },
+
+        "group": {
+            "description": "The grouping of the container",
+            "type": "string"
+        },
+
+        "type": {
+            "description": "The spec type that we're supposed to look for",
+            "type": "string"
+        },
+
+        "components": {
+            "description": "The components that make up this container",
+            "type": "array",
+            "items": {
+                "$ref": "manifest_component.schema"
+            }
+        },
+
+        "meta": {
+            "$ref": "metadata.schema"
+        }
+
+    },
+
+    "required": [
+        "name",
+        "group",
+        "type",
+        "components"
+    ]
+}

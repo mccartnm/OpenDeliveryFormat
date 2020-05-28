@@ -29,10 +29,12 @@ A sample Spec might look like:
     work:
       container: shot
       components:
-        - [ plate,
-            note,
-            -annotation,
-            -frame_range ]
+        - plate:
+          name: main-plates
+          sub_components:
+            - note
+            - .annotation
+            - .frame_range
 
     delivery:
       container: shot
@@ -47,7 +49,6 @@ A sample Spec might look like:
 The ``name`` is a unique identifier for the spec. You cannot have two specs with the same name in a single manifest.
 
 Hopefuly it's fairly human-readable. Let's break down the ``work`` section:
-
 
 .. code-block:: yaml
 

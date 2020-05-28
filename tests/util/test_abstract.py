@@ -26,8 +26,8 @@ class TestAbstractTools(unittest.TestCase):
         container  = _DataContainer.from_file(fpath)
 
         # __getitem__
-        self.assertEqual(container['meta']['odf_version'], "1.0.0")
-        self.assertTrue(isinstance(container['items'], list))
+        self.assertEqual(container['meta']['odf-version'], "1.0.1")
+        self.assertTrue(isinstance(container['containers'], list))
 
         # __setitem__
         container['foo'] = 'bar'

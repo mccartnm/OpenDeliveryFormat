@@ -1,0 +1,20 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ODF_Metadata",
+    "description": "Metadata the OpenDeliveryFormat system",
+    "type" : "object",
+
+    "properties": {
+
+        "odf-vendor-id": {
+            "description" : "Unique identifier of the vendor who has generated this object",
+            "type": "string"
+        },
+
+        "odf-version": {
+            "description": "The version string for this particular version of ODF",
+            "type": "string",
+            "pattern": "^(\\d\\.\\d\\.\\d)"
+        }
+    }
+}

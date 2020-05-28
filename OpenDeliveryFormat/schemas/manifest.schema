@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ODF_Manifest",
+    "description": "A manifest for the OpenDeliveryFormat system",
+    "type" : "object",
+
+
+    "properties": {
+
+        "meta": {
+            "$ref": "metadata.schema"
+        },
+
+        "containers": {
+            "type" : "array",
+            "items" : {
+                "$ref": "manifest_container.schema"
+            }
+        }
+
+    },
+
+    "required": ["containers"]
+}
