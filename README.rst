@@ -4,7 +4,7 @@
 OpenDeliveryFormat
 ******************
 
-.. image:: doc/source/_static/logo.svg
+.. image:: docs/source/_static/logo.svg
     :width: 256
     :align: center
 
